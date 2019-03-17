@@ -6,4 +6,3 @@ class ImageCodec:
     @staticmethod
     def decode_image(img):
         pass
-    

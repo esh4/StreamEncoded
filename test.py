@@ -68,6 +68,7 @@ def decode_image(img):
                 length = r
             elif index <= length:
                 msg += chr(r)
+                # print(str(r) + ' -> ' + chr(r))
             index += 1
     return msg
 
@@ -100,7 +101,7 @@ if img_encoded:
     webbrowser.open(encoded_image_file)
     '''
     # get the hidden text back ...
-    img2 = Image.open("enc_test.png")
+    img2 = Image.open("index.png")
     hidden_text = decode_image(img2)
     print("Hidden text:\n{}".format(hidden_text))
 
