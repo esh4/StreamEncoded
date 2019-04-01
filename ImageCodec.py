@@ -1,6 +1,6 @@
 class ImageCodec:
     @staticmethod
-    def encode_image(img, msg):
+    def encode_image(img, msg, *args):
         raise NotImplemented()
 
     @staticmethod
@@ -10,7 +10,7 @@ class ImageCodec:
 
 class BasicCodec(ImageCodec):
     @staticmethod
-    def encode_image(img, msg):
+    def encode_image(img, msg, *args):
         """
         use the red portion of an image (r, g, b) tuple to
         hide the msg string characters as ASCII values
@@ -45,33 +45,32 @@ class BasicCodec(ImageCodec):
 
     @staticmethod
     def decode_image(img):
-        def decode_image(img):
-            """
-            check the red portion of an image (r, g, b) tuple for
-            hidden message characters (ASCII values)
-            """
-            width, height = img.size
-            msg = ""
-            index = 0
-            for row in range(height):
-                for col in range(width):
-                    try:
-                        r, g, b = img.getpixel((col, row))
-                    except ValueError:
-                        # need to add transparency a for some .png files
-                        r, g, b, a = img.getpixel((col, row))
-                    # first pixel r value is length of message
-                    if row == 0 and col == 0:
-                        length = r
-                    elif index <= length:
-                        msg += chr(r)
-                    index += 1
-            return msg
+        """
+        check the red portion of an image (r, g, b) tuple for
+        hidden message characters (ASCII values)
+        """
+        width, height = img.size
+        msg = ""
+        index = 0
+        for row in range(height):
+            for col in range(width):
+                try:
+                    r, g, b = img.getpixel((col, row))
+                except ValueError:
+                    # need to add transparency a for some .png files
+                    r, g, b, a = img.getpixel((col, row))
+                # first pixel r value is length of message
+                if row == 0 and col == 0:
+                    length = r
+                elif index <= length:
+                    msg += chr(r)
+                index += 1
+        return msg
 
 
 class StopBitCodec(ImageCodec):
     @staticmethod
-    def encode_image(img, msg):
+    def encode_image(img, msg, *args):
         if img.mode != 'RGB':
             print("image mode needs to be RGB")
             return False
