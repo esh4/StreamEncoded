@@ -71,7 +71,7 @@ print(img, img.mode)  # test
 # create a new filename for the modified/encoded image
 encoded_image_file = "enc_" + original_image_file
 # don't exceed 255 characters in the message
-secret_msg = 'this is '
+secret_msg = open('testMsg.txt').read()
 print(len(secret_msg))  # test
 img_encoded = encode_image_stop_bit(img, secret_msg)
 if img_encoded:
@@ -91,5 +91,5 @@ if img_encoded:
     # get the hidden text back ...
     img2 = Image.open(encoded_image_file)
     hidden_text = decode_image_stop_bit(img2)
-    print("Hidden text:\n{}".format(hidden_text))
+    # print("Hidden text:\n{}".format(hidden_text))
 
