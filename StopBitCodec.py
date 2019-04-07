@@ -1,4 +1,8 @@
 def encode_image(img, msg, *args):
+    """
+    Message starts at the top of the image but ends at a stop bit
+    located in the blue pixel.
+    """
     if img.mode != 'RGB':
         print("image mode needs to be RGB")
         return False
@@ -23,6 +27,7 @@ def encode_image(img, msg, *args):
 
 def decode_image(img):
     width, height = img.size
+
     def loop():
         msg = ''
         index = 0

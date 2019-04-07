@@ -63,7 +63,7 @@ def decode_image_stop_bit(img):
 
 # pick a .png or .bmp file you have in the working directory
 # or give full path name
-original_image_file = "test.png"
+original_image_file = "testImg.png"
 # original_image_file = "Beach7.bmp"
 img = Image.open(original_image_file)
 # image mode needs to be 'RGB'

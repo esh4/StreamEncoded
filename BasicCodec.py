@@ -2,7 +2,8 @@ def encode_image(img, msg, *args):
     """
     use the red portion of an image (r, g, b) tuple to
     hide the msg string characters as ASCII values
-    red value of the first pixel is used for length of string
+    red value of the first pixel is used for length of string.
+    message always starts at the top of the image.
     """
     length = len(msg)
     # limit length of message to 255
