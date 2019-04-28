@@ -1,32 +1,48 @@
-def encode_image(img, msg, start_location=(50, 700)):
+# TODO: verivy that the size can actually hold the entire message
+# todo: make sure the size + location actually fit in the image
+
+### NEW IDEA - instead of size, just have a message_width
+
+def encode_image(img, msg, start_location=(50, 700), **kwargs):
     """
     :param img: image to encode message into
     :param msg:
     :param start_location: location of start bit
+    :param kwarg: size: tuple with dimentions of submatrix
     :return:
     """
+
     encoded = img.copy()
     width, height = img.size
     print('image size: {} x {}'.format(width, height))
     row_offset, col_offset = start_location
     msg_index = 0
 
-    r, g, b = img.getpixel(start_location)
-    encoded.putpixel((0, 0), (r, start_location[0], start_location[1]))
+    if 'size' in kwargs:
+        size = kwargs['size']
+    else:
+        size = (width, height)
 
-    for row in range(row_offset, height):
-        for col in range(width):
-            r, g, b = img.getpixel((min(col + col_offset*(row == row_offset), width - 1), row))
+    r, g, b = img.getpixel(start_location)
+    encoded.putpixel((0, 0), (r, start_location[0], start_location[1]))     # add the message's location to the top of the image
+    encoded.putpixel((1, 0), (r, size[0], size[1]))     # add the size of the message "box"
+
+    # print('size', size)
+    for row in range(row_offset, min(row_offset + size[1], height)):
+        for col in range(col_offset, min(col_offset + size[0], width)):
+            # print('adding to ', col, row)
+            r, g, b = img.getpixel((col, row))
             if msg_index < len(msg):
                 asc = ord(msg[msg_index])
-            elif msg_index == len(msg):
+            elif msg_index == len(msg):     # end of the massage
                 asc = r
-                g = ord('#')
+                g = ord('#')    # stop bit
                 print('stop bit added')
             else:
                 asc = r
             msg_index += 1
-            encoded.putpixel((min(col + col_offset*(row == row_offset), width - 1), row), (asc, g, b))
+            encoded.putpixel((col, row), (asc, g, b))
+            # print(col, row)
     return encoded
 
 
