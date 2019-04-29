@@ -21,22 +21,20 @@ def encode_image(img, msg, start_location=(50, 700), **kwargs):
     if 'size' in kwargs:
         size = kwargs['size']
     else:
-        size = (width, height)
+        size = width - col_offset
 
-    r, g, b = img.getpixel(start_location)
-    encoded.putpixel((0, 0), (r, start_location[0], start_location[1]))     # add the message's location to the top of the image
-    encoded.putpixel((1, 0), (r, size[0], size[1]))     # add the size of the message "box"
+    encoded.putpixel((0, 0), (size, start_location[0], start_location[1]))     # add the message's location to the top of the image
 
     # print('size', size)
-    for row in range(row_offset, min(row_offset + size[1], height)):
-        for col in range(col_offset, min(col_offset + size[0], width)):
-            # print('adding to ', col, row)
+    for row in range(row_offset, height):
+        for col in range(col_offset, min(col_offset + size, width)):
             r, g, b = img.getpixel((col, row))
             if msg_index < len(msg):
                 asc = ord(msg[msg_index])
             elif msg_index == len(msg):     # end of the massage
                 asc = r
-                g = ord('#')    # stop bit
+            elif msg_index == len(msg) + 1:
+                asc = ord('#')    # stop bit
                 print('stop bit added')
             else:
                 asc = r
@@ -49,7 +47,7 @@ def encode_image(img, msg, start_location=(50, 700), **kwargs):
 def decode_image(img):
     width, height = img.size
 
-    # find message location
+    # find message location and width
     try:
         r, g, b = img.getpixel((0, 0))
     except ValueError:
@@ -57,21 +55,24 @@ def decode_image(img):
         r, g, b, a = img.getpixel((0, 0))
 
     start_location = (g, b)     # (row, col)
-    print(start_location)
+    message_width = r
+    print('starting location', start_location)
+    print('message width ', message_width)
 
     def loop():
         msg = ''
         index = 0
         for row in range(start_location[0], height):
-            for col in range(width):
+            for col in range(start_location[1], min(start_location[1] + message_width, width)):
                 try:
-                    r, g, b = img.getpixel((min(col + start_location[1]*(row == start_location[0]), width - 1), row))
+                    r, g, b = img.getpixel((col, row))
                 except ValueError:
                     # need to add transparency a for some
-                    r, g, b, a = img.getpixel((min(col + start_location[1]*(row == start_location[0]), width - 1), row))
-                if chr(g) != '#':
+                    r, g, b, a = img.getpixel((col, row))
+                if chr(r) != '#':
                     msg += chr(r)
                 else:
+                    print('found stop bit: ', chr(g))
                     return msg
                 index += 1
 
