@@ -13,16 +13,15 @@ def compare(s1, s2):
             disc[l] = [s1[l], s2[l]]
     return disc
 
-try:
-    encoded_img = encode_image(img, msg, (600, 0))
-    encoded_img.save('encoded.png')
 
-    encoded_img = Image.open('encoded.png')
-    decoded_msg = decode_image(encoded_img)
-    print(decoded_msg)
-    print(compare(msg, decoded_msg))
+encoded_img = encode_image(img, msg, (700, 1500), 200)
+encoded_img.save('encoded.png')
 
-except Exception as e:
-    print(e.with_traceback())
+
+print('\n\nstarting decode')
+encoded_img = Image.open('encoded.png')
+decoded_msg = decode_image(encoded_img)
+print(decoded_msg)
+# print(compare(msg, decoded_msg))
 
 
