@@ -1,0 +1,133 @@
+#:import FadeTransition kivy.uix.screenmanager.FadeTransition
+
+Management:
+    transition: FadeTransition()
+    HomeScreen:
+    Encode:
+    Decode:
+
+
+<But@Button>:
+    font_size: 50
+    background_normal: "/Users/yonagil/Downloads/rectangle-transparent-blank-3.png"
+    background_down: "/Users/yonagil/Downloads/rectangle-transparent-blank-3.png"
+
+
+<But2@Button>:
+    font_size: 50
+    background_normal: "/Users/yonagil/Downloads/button-transparent-background-17.png"
+    background_down: "/Users/yonagil/Downloads/button-transparent-background-17.png"
+
+<HomeScreen>:
+    name: "home"
+    spacing: 10
+    padding: 10
+    Image:
+        source: "/Users/yonagil/Downloads/blue-square-walls-24979-2880x1800.jpg"
+        allow_stretch: True
+        keep_ratio: False
+    GridLayout:
+        orientation: "horizontal"
+        rows: 2
+        Label:
+            size_hint_y: 0.3
+            text: "Picture Encoding Program"
+            font_size: 80
+            color: 0,1,.5,1
+            background_color: 0,0,0,0
+            bold: True
+
+        GridLayout:
+            rows: 2
+            AnchorLayout:
+                But:
+                    on_release: app.root.current = "Enc"
+                    text: "Encode"
+                    color: 1,0,0,1
+                    size_hint_y: 0.3
+                    size_hint_x: 0.3
+            AnchorLayout:
+                But:
+                    on_release: app.root.current = "Dec"
+                    text: "Decode"
+                    color: 0,1,0,1
+                    size_hint_y: 0.3
+                    size_hint_x: 0.3
+
+
+<Encode>:
+    name: "Enc"
+    spacing: 10
+    padding: 10
+    Image:
+        source: "/Users/yonagil/Downloads/blue-square-walls-24979-2880x1800.jpg"
+        allow_stretch: True
+        keep_ratio: False
+    GridLayout:
+        orientation: "horizontal"
+        rows: 3
+
+        Image:
+            source: None
+            id: img
+
+            keep_ratio: False
+            allow_stretch: True
+
+
+        GridLayout:
+            size_hint_y: 0.3
+            cols: 2
+            GridLayout:
+                rows: 2
+                TextInput:
+                    id: dir
+                    text: "None"
+                    font_size: 50
+                    multiline: False
+                    size_hint_y: 0.4
+                AnchorLayout:
+                    But2:
+                        text: "Insert"
+                        on_press: root.update()
+                        size_hint_x: 0.4
+
+
+            GridLayout:
+                rows: 2
+                TextInput:
+                    id: mes
+                    size_hint_y: 0.4
+                    font_size: 50
+                AnchorLayout:
+                    But2:
+                        text: "Message"
+                        size_hint_x: 0.4
+
+
+        GridLayout:
+            size_hint_y: 0.2
+            cols: 2
+            Button:
+                text: "Save"
+            Button:
+                text: "Send to Friend"
+
+
+
+
+
+
+
+
+
+
+<Decode>:
+    name: "Dec"
+    spacing: 10
+    padding: 10
+    BoxLayout:
+        Button:
+            on_release: app.root.current = "home"
+            text: "Back to home screen"
+            font_size: 32
