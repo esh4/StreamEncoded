@@ -9,21 +9,21 @@ Management:
 
 <But@Button>:
     font_size: 50
-    background_normal: "/Users/yonagil/Downloads/rectangle-transparent-blank-3.png"
-    background_down: "/Users/yonagil/Downloads/rectangle-transparent-blank-3.png"
+    background_normal: "/Users/yonagil/StreamEncoded/rectangle-transparent-blank-3.png"
+    background_down: "/Users/yonagil/StreamEncoded/rectangle-transparent-blank-3.png"
 
 
 <But2@Button>:
     font_size: 50
-    background_normal: "/Users/yonagil/Downloads/button-transparent-background-17.png"
-    background_down: "/Users/yonagil/Downloads/button-transparent-background-17.png"
+    background_normal: "/Users/yonagil/StreamEncoded/button-transparent-background-17.png"
+    background_down: "/Users/yonagil/StreamEncoded/button-transparent-background-17.png"
 
 <HomeScreen>:
     name: "home"
     spacing: 10
     padding: 10
     Image:
-        source: "/Users/yonagil/Downloads/blue-square-walls-24979-2880x1800.jpg"
+        source: "/Users/yonagil/StreamEncoded/blue-square-walls-24979-2880x1800.jpg"
         allow_stretch: True
         keep_ratio: False
     GridLayout:
@@ -54,70 +54,108 @@ Management:
                     size_hint_y: 0.3
                     size_hint_x: 0.3
 
+<LB@Label>:
+    font_size: 50
+    size_hint_x: 0.3
+
+<TI@TextInput>:
+    multiline: False
+    font_size: 50
+<GR@GridLayout>:
+    pos_hint: {"center_x": .50, "center_y": .50}
+    size_hint_y: .1
+    cols: 2
 
 <Encode>:
     name: "Enc"
     spacing: 10
     padding: 10
     Image:
-        source: "/Users/yonagil/Downloads/blue-square-walls-24979-2880x1800.jpg"
+        source: "/Users/yonagil/StreamEncoded/blue-square-walls-24979-2880x1800.jpg"
         allow_stretch: True
         keep_ratio: False
     GridLayout:
         orientation: "horizontal"
-        rows: 3
+        rows: 2
 
         Image:
             source: None
             id: img
 
-            keep_ratio: False
+            keep_ratio: True
             allow_stretch: True
 
+        GridLayout:
+            cols: 3
+            AnchorLayout:
+                size_hint_x: 0.2
+                Button:
+                    size_hint_y: 0.2
+                    on_press: manager.current = root.switch(manager.current, "down")
+
+            ScreenManager:
+                id: manager
+                transition: FadeTransition()
+
+                Screen:
+                    name: "directory"
+                    GR:
+                        LB:
+                            text: "Directory"
+                        TI:
+                            id: dir
+
+                Screen:
+                    name: "message"
+                    GR:
+                        LB:
+                            text: "Message"
+                        TI:
+                            id: mes
+                Screen:
+                    name: "location"
+                    GR:
+                        LB:
+                            text: "Location"
+                        TI:
+                            id: loc
+                Screen:
+                    name: "width"
+                    GR:
+                        LB:
+                            text: "Width"
+                        TI:
+                            id: wid
+
+            AnchorLayout:
+                size_hint_x: 0.2
+                Button:
+                    size_hint_y: 0.2
+                    on_press: manager.current = root.switch(manager.current, "up")
+
+    Button:
+        size_hint: 0.3, 0.1
+        pos_hint: {"center_x": 0.5, "y": 0.05}
+        text: "Encode"
+        on_press: root.encodePhoto(), root.firePopup()
+
+
+<Popups>:
+    GridLayout:
+        rows: 2
+        Image:
+            source: "/users/yonagil/downloads/image3.jpg"
+            id: img
+
+            keep_ratio: True
+            allow_stretch: True
 
         GridLayout:
-            size_hint_y: 0.3
             cols: 2
-            GridLayout:
-                rows: 2
-                TextInput:
-                    id: dir
-                    text: "None"
-                    font_size: 50
-                    multiline: False
-                    size_hint_y: 0.4
-                AnchorLayout:
-                    But2:
-                        text: "Insert"
-                        on_press: root.update()
-                        size_hint_x: 0.4
-
-
-            GridLayout:
-                rows: 2
-                TextInput:
-                    id: mes
-                    size_hint_y: 0.4
-                    font_size: 50
-                AnchorLayout:
-                    But2:
-                        text: "Message"
-                        size_hint_x: 0.4
-
-
-        GridLayout:
-            size_hint_y: 0.2
-            cols: 2
-            Button:
-                text: "Save"
-            Button:
-                text: "Send to Friend"
-
-
-
-
-
-
+            Label:
+                text: "IP"
+            TextInput:
+                font_size: 30
 
 
 
