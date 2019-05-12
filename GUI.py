@@ -33,8 +33,6 @@ class HomeScreen(Screen,GridLayout):
 
 
 class Encode(Screen, GridLayout):
-    #self.ids.dir.text = r'testImg.png'
-    #self.ids.mes.text
 
     def update(self):
         self.ids.img.source = self.ids.dir.text

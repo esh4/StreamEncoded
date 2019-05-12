@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4efb07d8-fec7-4434-8b66-67185e8ce764" name="Default" comment="">
 <<<<<<< HEAD
+<<<<<<< HEAD
       <change type="DELETED" beforePath="$PROJECT_DIR$/blue-square-walls-24979-2880x1800.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/button-transparent-background-17.png" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/rectangle-transparent-blank-3.png" afterPath="" />
@@ -11,11 +12,16 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GUI.py" afterPath="$PROJECT_DIR$/GUI.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/smartTest.py" afterPath="$PROJECT_DIR$/smartTest.py" />
 =======
+=======
+>>>>>>> parent of d89d32c... esh2
       <change afterPath="$PROJECT_DIR$/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/GUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/smartTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/smartTest.py" afterDir="false" />
+<<<<<<< HEAD
 >>>>>>> 6f74eb1ff14de0a7ee69240eb82741b78cc90918
+=======
+>>>>>>> parent of d89d32c... esh2
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -85,10 +91,13 @@
         <entry file="file://$PROJECT_DIR$/StartStopBitCodec.py">
           <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
+<<<<<<< HEAD
             <state relative-caret-position="405">
               <caret line="27" column="19" lean-forward="false" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
               <folding />
 =======
+=======
+>>>>>>> parent of d89d32c... esh2
             <state relative-caret-position="-441">
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
@@ -101,6 +110,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GUI.kv">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
 <<<<<<< HEAD
             <state relative-caret-position="510">
               <caret line="34" column="14" lean-forward="false" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
@@ -143,6 +153,10 @@
               <folding>
                 <element signature="e#0#56#0" expanded="true" />
               </folding>
+=======
+            <state relative-caret-position="645">
+              <caret line="139" column="36" selection-start-line="139" selection-start-column="36" selection-end-line="139" selection-end-column="36" />
+>>>>>>> parent of d89d32c... esh2
             </state>
           </provider>
         </entry>
@@ -174,7 +188,10 @@
 =======
         <option value="$PROJECT_DIR$/GUI.kv" />
         <option value="$PROJECT_DIR$/__init__.py" />
+<<<<<<< HEAD
 >>>>>>> 6f74eb1ff14de0a7ee69240eb82741b78cc90918
+=======
+>>>>>>> parent of d89d32c... esh2
         <option value="$PROJECT_DIR$/GUI.py" />
       </list>
     </option>
@@ -832,10 +849,27 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test.py" />
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/StartStopBitCodec.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+=======
+    <entry file="file://$USER_HOME$/PycharmProjects/untitled/manage1.kv" />
+    <entry file="file://$PROJECT_DIR$/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GUI.kv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="645">
+          <caret line="139" column="36" selection-start-line="139" selection-start-column="36" selection-end-line="139" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StartStopBitCodec.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-441">
+>>>>>>> parent of d89d32c... esh2
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>
@@ -852,8 +886,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/smartTest.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="435">
           <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+=======
+        <state relative-caret-position="255">
+          <caret line="17" column="30" selection-start-line="17" selection-end-line="18" />
+>>>>>>> parent of d89d32c... esh2
           <folding>
             <element signature="e#0#56#0" expanded="true" />
 =======
@@ -872,6 +911,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/StartStopBitCodec.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-441">
@@ -907,6 +947,10 @@
           <caret line="48" column="39" lean-forward="true" selection-start-line="48" selection-start-column="39" selection-end-line="48" selection-end-column="39" />
           <folding />
 =======
+=======
+    <entry file="file://$PROJECT_DIR$/GUI.py">
+      <provider selected="true" editor-type-id="text-editor">
+>>>>>>> parent of d89d32c... esh2
         <state relative-caret-position="225">
           <caret line="15" column="21" lean-forward="true" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
           <folding>
