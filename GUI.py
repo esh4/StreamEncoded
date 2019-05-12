@@ -25,8 +25,6 @@ class HomeScreen(Screen,GridLayout):
 
 
 class Encode(Screen, GridLayout):
-    self.ids.dir.text = r'testImg.png'
-    self.ids.mes.text
 
     def update(self):
         self.ids.img.source = self.ids.dir.text
@@ -52,13 +50,20 @@ class Encode(Screen, GridLayout):
         pop.open()
 
     def encodePhoto(self):
+        # defaults
+        self.ids.dir.text = r'testImg.png'
+        self.ids.mes.text = open('testMsg.txt', 'r').read()
+        self.ids.loc.text = '700 1500'
+        self.ids.wid.text = '200'
+
         image_directory = self.ids.dir.text
+        image = Image.open(image_directory)
         message = self.ids.mes.text
-        starting_location = (self.ids.mes.text.split()[0], self.ids.mes.text.split()[1])
-        message_width = self.ids.wid.text
+        starting_location = (int(self.ids.loc.text.split()[0]), int(self.ids.loc.text.split()[1]))
+        message_width = int(self.ids.wid.text)
         print(image_directory, message, starting_location, message_width)
-        # encoded_image = encode_image(self.ids.dir.text, self.ids.mes.text, self.ids.loc, self.ids.wid.text)
-        # encoded_image.save(image_directory[:-4]+'__encoded.png')
+        encoded_image = encode_image(image, message, starting_location, message_width)
+        encoded_image.save(image_directory[:-4]+'__encoded.png')
 
 class Decode(Screen, GridLayout):
     pass
