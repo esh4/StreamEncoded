@@ -1,5 +1,6 @@
 from Tools import MessageOverflowError
 from math import ceil
+import re
 
 # TODO: verivy that the size can actually hold the entire message
 # todo: make sure the size + location actually fit in the image
@@ -127,5 +128,12 @@ def decode_image(img):
                 index += 1
 
     msg = loop()
-    return msg
+
+    # strip off null bits
+    stripped = ''
+    for x in range(len(msg)):
+        if ord(msg[x]) != 0:
+            stripped += msg[x]
+
+    return stripped
 

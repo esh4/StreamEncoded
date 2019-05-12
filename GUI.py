@@ -12,8 +12,11 @@ Config.set('graphics', 'height', '750')
 
 
 from StartStopBitCodec import *
+from sendRecvImage import  *
+
 from PIL import Image
 import kivy
+import thread
 kivy.require('1.9.1')
 
 
@@ -47,7 +50,7 @@ class Encode(Screen, GridLayout):
         return self.screens[self.index]
 
     def firePopup(self):
-        pop = PopUps()
+        pop = encPU()
         pop.open()
 
     def encodePhoto(self):
@@ -67,11 +70,20 @@ class Encode(Screen, GridLayout):
         encoded_image.save(image_directory[:-4]+'__encoded.png')
 
 class Decode(Screen, GridLayout):
+    decoded_msg = ''
+
     def decode_image(self):
+        self.ids.dir2.text = 'testImg__encoded.png'
+
         image_directory = self.ids.dir2.text
 
-        decoded_msg = decoded_msg(image_directory)
-        print(decoded_msg)
+        self.decoded_msg = decode_image(Image.open(image_directory))
+        print(self.decoded_msg)
+
+    def firePopup(self):
+        PU = decPU()
+        PU.open()
+        PU.ids.decodedLabel.text = self.decoded_msg.strip()
 
 class encPU(Popup):
     pass
@@ -89,5 +101,7 @@ class FirstApp(App):
         return presentation
 
 
-Simple = FirstApp()
-Simple.run()
+if __name__ == '__main__':
+    thread.start_new_thread(recv_image)
+    Simple = FirstApp()
+    Simple.run()

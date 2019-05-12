@@ -23,7 +23,7 @@ def send_image(image_dir):
         s.close()
 
 
-def recv_image():
+def recv_image(callback=lambda: x):
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_socket.bind(('0.0.0.0', 5990))
     server_socket.listen(1)
@@ -50,6 +50,7 @@ def recv_image():
 
             with open('recv.png', 'wb') as f:
                 f.write(image_data)
+            callback()
     finally:
         server_socket.close()
         client_socket.close()

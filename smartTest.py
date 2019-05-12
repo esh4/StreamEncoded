@@ -19,9 +19,11 @@ def compare(s1, s2):
 
 
 print('\n\nstarting decode')
-encoded_img = Image.open('recv.png')
+encoded_img = Image.open('testImg__encoded.png')
 decoded_msg = decode_image(encoded_img)
 print(decoded_msg)
+for i in decoded_msg:
+    print(ord(i))
 # print(compare(msg, decoded_msg))
 
 
