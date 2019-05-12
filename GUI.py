@@ -1,12 +1,19 @@
-import kivy
-kivy.require('1.9.1')
-
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen, FadeTransition
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
 from kivy.uix.popup import Popup
+from kivy.config import Config
+
+Config.set('graphics', 'width', '1000')
+Config.set('graphics', 'height', '750')
+
+
+from StartStopBitCodec import *
+from PIL import Image
+import kivy
+kivy.require('1.9.1')
 
 
 class Management(ScreenManager):
@@ -18,11 +25,11 @@ class HomeScreen(Screen,GridLayout):
 
 
 class Encode(Screen, GridLayout):
-
+    self.ids.dir.text = r'testImg.png'
+    self.ids.mes.text
 
     def update(self):
         self.ids.img.source = self.ids.dir.text
-
 
     def switch(self, current, next):
         self.screens = ["width", "directory", "message", "location"]
@@ -45,8 +52,13 @@ class Encode(Screen, GridLayout):
         pop.open()
 
     def encodePhoto(self):
-        pass
-
+        image_directory = self.ids.dir.text
+        message = self.ids.mes.text
+        starting_location = (self.ids.mes.text.split()[0], self.ids.mes.text.split()[1])
+        message_width = self.ids.wid.text
+        print(image_directory, message, starting_location, message_width)
+        # encoded_image = encode_image(self.ids.dir.text, self.ids.mes.text, self.ids.loc, self.ids.wid.text)
+        # encoded_image.save(image_directory[:-4]+'__encoded.png')
 
 class Decode(Screen, GridLayout):
     pass

@@ -22,6 +22,6 @@ print('\n\nstarting decode')
 encoded_img = Image.open('encoded.png')
 decoded_msg = decode_image(encoded_img)
 print(decoded_msg)
-# print(compare(msg, decoded_msg))
+# print(compare(msg, decoded_gimsg))
 
 
