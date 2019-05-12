@@ -12,7 +12,7 @@ Config.set('graphics', 'height', '750')
 
 
 from StartStopBitCodec import *
-from PIL import Image
+#from PIL import Image
 import kivy
 kivy.require('1.9.1')
 
@@ -70,10 +70,11 @@ class Decode(Screen, GridLayout):
     pass
 
 
-class PopUps(Popup):
+class encPU(Popup):
     pass
 
-
+class decPU(Popup):
+    pass
 
 presentation = Builder.load_file("GUI.kv")
 
