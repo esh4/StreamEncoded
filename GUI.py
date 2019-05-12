@@ -11,7 +11,7 @@ Config.set('graphics', 'height', '750')
 
 
 from StartStopBitCodec import *
-from PIL import Image
+#from PIL import Image
 import kivy
 kivy.require('1.9.1')
 
@@ -33,8 +33,8 @@ class HomeScreen(Screen,GridLayout):
 
 
 class Encode(Screen, GridLayout):
-    self.ids.dir.text = r'testImg.png'
-    self.ids.mes.text
+    #self.ids.dir.text = r'testImg.png'
+    #self.ids.mes.text
 
     def update(self):
         self.ids.img.source = self.ids.dir.text
@@ -42,15 +42,18 @@ class Encode(Screen, GridLayout):
     def switch(self, current, next):
         self.screens = ["width", "directory", "message", "location"]
         self.index = self.screens.index(current)
-        if(self.index == 3):
-            self.index = 0
-        elif(self.index == -1):
-            self.index = 3
 
         if(next == "up"):
-            self.index += 1
+            if(self.index == 3):
+                self.index = 0
+            else:
+                self.index += 1
+
         elif(next == "down"):
-            self.index -= 1
+            if(self.index == 0):
+                self.index = 3
+            else:
+                self.index -= 1
 
         self.update()
         return self.screens[self.index]
