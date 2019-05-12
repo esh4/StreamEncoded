@@ -12,7 +12,7 @@ Config.set('graphics', 'height', '750')
 
 
 from StartStopBitCodec import *
-#from PIL import Image
+from PIL import Image
 import kivy
 kivy.require('1.9.1')
 
@@ -67,14 +67,19 @@ class Encode(Screen, GridLayout):
         encoded_image.save(image_directory[:-4]+'__encoded.png')
 
 class Decode(Screen, GridLayout):
-    pass
+    def decode_image(self):
+        image_directory = self.ids.dir2.text
 
+        decoded_msg = decoded_msg(image_directory)
+        print(decoded_msg)
 
 class encPU(Popup):
     pass
 
+
 class decPU(Popup):
     pass
+
 
 presentation = Builder.load_file("GUI.kv")
 
