@@ -59,7 +59,6 @@ Management:
             AnchorLayout:
                 But:
                     on_release: app.root.current = "Enc"
-                    on_press: root.popup()
                     text: "Encode"
                     size_hint_y: 0.4
                     size_hint_x: 0.3
@@ -129,16 +128,15 @@ Management:
             cols: 2
             AnchorLayout:
                 But2:
-                    size_hint_x: .7
+                    size_hint_x: .4
                     text: "Back"
                     on_press: app.root.current = "home"
             AnchorLayout:
-                But2:
+                But:
                     size_hint_x: .7
+                    color: 1,1,1,1
                     text: "Encode & Send"
                     on_press: #root.encodePhoto()
-
-
 
 
 
