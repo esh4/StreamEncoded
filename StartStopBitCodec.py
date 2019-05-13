@@ -71,6 +71,8 @@ def encode_image(img, msg, start_location=(50, 700), **kwargs):
     # scale message location
     start_location = scale(start_location[0], width, 255), scale(start_location[1], height, 255)
 
+    # TODO: scale the message width as well
+
     encoded.putpixel((0, 0), (message_width, start_location[0], start_location[1]))     # add the message's location to the top of the image
 
     for row in range(row_offset, height):
