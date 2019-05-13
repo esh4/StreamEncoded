@@ -53,10 +53,10 @@ class Encode(Screen, GridLayout):
 
     def encodePhoto(self):
         # defaults
-        self.ids.dir.text = r'testImg.png'
-        self.ids.mes.text = open('testMsg.txt', 'r').read()
-        self.ids.loc.text = '700 1500'
-        self.ids.wid.text = '200'
+        # self.ids.dir.text = r'testImg.png'
+        # self.ids.mes.text = open('testMsg.txt', 'r').read()
+        # self.ids.loc.text = '700 1500'
+        # self.ids.wid.text = '200'
 
         image_directory = self.ids.dir.text
         image = Image.open(image_directory)
