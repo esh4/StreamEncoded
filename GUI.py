@@ -93,23 +93,35 @@ class encPU(Popup):
 class decPU(Popup):
     pass
 
+
 class recPU(Popup):
     receive = None
     pu = None
+    image_dir = ''
 
-    def acceptIMG(self, accept):
-        self.receive = accept
+    @staticmethod
+    def update():
+        recPU.pu.ids.received_image.source = '280px-PNG_transparency_demonstration_1.png'
+        print(recPU.pu.ids.received_image.source)
+
+    @staticmethod
+    def acceptIMG(accept):
+        recPU.pu.receive = accept
 
     @staticmethod
     def show_popup():
-        pu = recPU()
-        print('!!!!!!!!!')
-        pu.open()
-        print('@@@@@@@@')
-        while pu.receive is None:
-            print(pu.receive)
+        recPU.pu = recPU()
+        recPU.pu.open()
+        while recPU.pu.receive is None:
+            print(recPU.pu.receive)
             time.sleep(0.5)
-        return pu.receive
+        return recPU.pu.receive
+
+    @staticmethod
+    def display_image(dir):
+        recPU.pu.image_dir = dir
+        print(recPU.pu.image_dir)
+        recPU.pu.update()
 
 
 presentation = Builder.load_file("GUI.kv")
@@ -121,6 +133,6 @@ class FirstApp(App):
 
 
 if __name__ == '__main__':
-    _thread.start_new_thread(recv_image, (recPU.show_popup, ))
+    _thread.start_new_thread(recv_image, (recPU.show_popup, recPU.display_image))
     Simple = FirstApp()
     Simple.run()

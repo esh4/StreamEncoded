@@ -23,7 +23,7 @@ def send_image(image_dir, ip='localhost'):
         s.close()
 
 
-def recv_image(accept_image=lambda: False):
+def recv_image(accept_image=lambda: False, directory_callback=lambda: False, directory='Downloads'):
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_socket.bind(('0.0.0.0', 5990))
     server_socket.listen(1)
@@ -48,8 +48,10 @@ def recv_image(accept_image=lambda: False):
                     break
                 image_data += data
 
-            with open('recv {}.png'.format(datetime.now()), 'wb') as f:
+            image_dir = '{}/recv {}.png'.format(directory, datetime.now())
+            with open(image_dir, 'wb') as f:
                 f.write(image_data)
+            directory_callback(image_dir)
     finally:
         server_socket.close()
         client_socket.close()

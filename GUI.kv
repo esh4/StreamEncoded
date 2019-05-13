@@ -214,8 +214,6 @@ Management:
             on_press: root.decode_image(), root.firePopup()
 
 <recPU>:
-    Button:
-        text: "here"
     ScreenManager:
         id: man
         transition: FadeTransition()
@@ -225,7 +223,7 @@ Management:
                 Button:
                     text: "Aceept"
                     on_press: root.acceptIMG(True)
-                    on_release:  app.root.current = "a"
+                    on_release:  man.current = "a"
                 Button:
                     text: "Decline"
                     on_press: root.acceptIMG(False)
@@ -235,9 +233,12 @@ Management:
             GridLayout:
                 rows: 2
                 Image:
-                    size_hint_y: 0.7
-                    source: None
+                    id: received_image
+                    source: '280px-PNG_transparency_demonstration_1.png'
+                    allow_stretch: True
+                    keep_ratio: False
                 GridLayout:
+                    size_hint_y: 0.3
                     cols: 2
                     Button:
                         text: "Download"
