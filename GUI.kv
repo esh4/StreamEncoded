@@ -136,7 +136,7 @@ Management:
                     size_hint_x: .7
                     color: 1,1,1,1
                     text: "Encode & Send"
-                    on_press: #root.encodePhoto()
+                    on_press: root.encodePhoto()
 
 
 
@@ -180,7 +180,7 @@ Management:
                 But2:
                     size_hint_x: .4
                     text: "Decode"
-                    on_press:  root.firePopup() #,root.decode_image()
+                    on_press:   root.decode_image(), root.firePopup()
 
 <recPU>:
     title: "Received Encoded Photo"

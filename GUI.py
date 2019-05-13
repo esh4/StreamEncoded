@@ -14,7 +14,7 @@ Config.set('graphics', 'resizable', False)
 from StartStopBitCodec import *
 from sendRecvImage import  *
 
-#from PIL import Image
+from PIL import Image
 import kivy
 import _thread
 import time
@@ -78,7 +78,7 @@ class Decode(Screen, GridLayout):
     decoded_msg = ''
 
     def decode_image(self):
-        self.ids.dir2.text = 'testImg__encoded.png'
+        # self.ids.dir2.text = 'testImg__encoded.png'
 
         image_directory = self.ids.dir2.text
 
@@ -105,8 +105,9 @@ class recPU(Popup):
 
     @staticmethod
     def update():
-        recPU.pu.ids.received_image.source = '280px-PNG_transparency_demonstration_1.png'
-        print(recPU.pu.ids.received_image.source)
+        pass
+    #     recPU.pu.ids.received_image.source = '280px-PNG_transparency_demonstration_1.png'
+    #     print(recPU.pu.ids.received_image.source)
 
     @staticmethod
     def acceptIMG(accept):
