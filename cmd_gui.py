@@ -16,17 +16,26 @@ class Menu:
         return self.menu_options[choice]
 
 class encode_gui:
-    image_directory = ''
+
     def __init__(self):
-        m = Menu({
-            image_directory: lambda input('image dir'): (self.image_directory = input('image dir'))
-        })
+        # m = Menu({
+        #     image_directory:
+        # }
+
+        encoding_option = {
+            'image_directory': '',
+            'message': '',
+            'starting_location': (),
+            'message_width': 200
+        }
 
     def encode(self):
         image_directory = input('image dir')
-        message = input('message')
-        starting_location = input('loc')
-        message_width = int(input('mes wid'))
+        self.message = input('message')
+        self.starting_location = input('loc')
+        self.message_width = int(input('mes wid'))
+
+
 
 
 

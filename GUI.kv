@@ -9,21 +9,21 @@ Management:
 
 <But@Button>:
     font_size: 50
-    background_normal: "/gui_deps/rectangle-transparent-blank-3.png"
-    background_down: "/gui_deps/rectangle-transparent-blank-3.png"
+    background_normal: "gui_deps/rectangle-transparent-blank-3.png"
+    background_down: "gui_deps/rectangle-transparent-blank-3.png"
 
 
 <But2@Button>:
     font_size: 50
-    background_normal: "/gui_deps/button-transparent-background-17.png"
-    background_down: "/gui_deps/button-transparent-background-17.png"
+    background_normal: "gui_deps/button-transparent-background-17.png"
+    background_down: "gui_deps/button-transparent-background-17.png"
 
 <HomeScreen>:
     name: "home"
     spacing: 10
     padding: 10
     Image:
-        source: "/gui_deps/blue-square-walls-24979-2880x1800.jpg"
+        source: "gui_deps/blue-square-walls-24979-2880x1800.jpg"
         allow_stretch: True
         keep_ratio: False
     GridLayout:
@@ -32,7 +32,7 @@ Management:
         Label:
             size_hint_y: 0.3
             text: "Picture Encoding Program"
-            font_size: 80
+            font_size: "80sp"
             color: 0,1,.5,1
             background_color: 0,0,0,0
             bold: True
@@ -55,8 +55,10 @@ Management:
                     size_hint_x: 0.3
 
 <LB@Label>:
-    font_size: 50
-    size_hint_x: 0.3
+    font_size: '15sp'
+    center_x: 0
+    text_size: self.size
+    halign: "left"
 
 <TI@TextInput>:
     multiline: False
@@ -71,12 +73,12 @@ Management:
     spacing: 10
     padding: 10
     Image:
-        source: "/gui_deps/blue-square-walls-24979-2880x1800.jpg"
+        source: "gui_deps/blue-square-walls-24979-2880x1800.jpg"
         allow_stretch: True
         keep_ratio: False
     GridLayout:
         orientation: "horizontal"
-        rows: 2
+        rows: 3
 
         Image:
             source: None
@@ -86,58 +88,73 @@ Management:
             allow_stretch: True
 
         GridLayout:
-            cols: 3
-            AnchorLayout:
-                size_hint_x: 0.2
-                Button:
-                    size_hint_y: 0.2
-                    on_press: manager.current = root.switch(manager.current, "down")
+            cols: 2
+            GridLayout:
+                spacing: 10
+                padding: 10
+                size_hint_x: .3
+                rows: 4
+                LB:
+                    text: "Directory"
+                LB:
+                    text: "Message"
+                LB:
+                    text: "Location"
+                LB:
+                    text: "Width"
 
-            ScreenManager:
-                id: manager
-                transition: FadeTransition()
+            GridLayout:
+                spacing: 10
+                padding: 10
+                rows: 4
+                TI:
+                    id: dir
+                TI:
+                    id: mes
+                TI:
+                    id: loc
+                TI:
+                    id: wid
 
-                Screen:
-                    name: "directory"
-                    GR:
-                        LB:
-                            text: "Directory"
-                        TI:
-                            id: dir
+#            ScreenManager:
+#                id: manager
+#                transition: FadeTransition()
+#
+#                Screen:
+#                    name: "directory"
+#                    GR:
+#                        LB:
+#                            text: "Directory"
+#                        TI:
+#                            id: dir
+#
+#                Screen:
+#                    name: "message"
+#                    GR:
+#                        LB:
+#                            text: "Message"
+#                        TI:
+#                            id: mes
+#                Screen:
+#                    name: "location"
+#                    GR:
+#                        LB:
+#                            text: "Location"
+#                        TI:
+#                            id: loc
+#                Screen:
+#                    name: "width"
+#                    GR:
+#                        LB:
+#                            text: "Width"
+#                        TI:
+#                            id: wid
 
-                Screen:
-                    name: "message"
-                    GR:
-                        LB:
-                            text: "Message"
-                        TI:
-                            id: mes
-                Screen:
-                    name: "location"
-                    GR:
-                        LB:
-                            text: "Location"
-                        TI:
-                            id: loc
-                Screen:
-                    name: "width"
-                    GR:
-                        LB:
-                            text: "Width"
-                        TI:
-                            id: wid
-
-            AnchorLayout:
-                size_hint_x: 0.2
-                Button:
-                    size_hint_y: 0.2
-                    on_press: manager.current = root.switch(manager.current, "up")
-
-    Button:
-        size_hint: 0.3, 0.1
-        pos_hint: {"center_x": 0.5, "y": 0.05}
-        text: "Encode"
-        on_press: root.encodePhoto(), root.firePopup()
+        Button:
+            size_hint: 0.3, 0.1
+            pos_hint: {"center_x": 0.5, "y": 0.05}
+            text: "Encode"
+            on_press: root.encodePhoto(), root.firePopup()
 
 
 <encPU>:
@@ -172,7 +189,7 @@ Management:
     spacing: 10
     padding: 10
     Image:
-        source: "/gui_deps/blue-square-walls-24979-2880x1800.jpg"
+        source: "gui_deps/blue-square-walls-24979-2880x1800.jpg"
         keep_ratio: False
         allow_stretch: True
     GridLayout:
@@ -195,3 +212,7 @@ Management:
             text: "Decode"
             font_size: 50
             on_press: root.decode_image(), root.firePopup()
+
+<recPU>:
+    Button:
+        text: "HELLO"

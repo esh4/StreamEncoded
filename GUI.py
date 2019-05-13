@@ -7,8 +7,8 @@ from kivy.uix.label import Label
 from kivy.uix.popup import Popup
 from kivy.config import Config
 
-Config.set('graphics', 'width', '1000')
-Config.set('graphics', 'height', '750')
+# Config.set('graphics', 'width', '1000')
+# Config.set('graphics', 'height', '750')
 
 
 from StartStopBitCodec import *
@@ -16,7 +16,7 @@ from sendRecvImage import  *
 
 from PIL import Image
 import kivy
-import thread
+import _thread
 kivy.require('1.9.1')
 
 
@@ -92,6 +92,8 @@ class encPU(Popup):
 class decPU(Popup):
     pass
 
+class recPU(Popup):
+    pass
 
 presentation = Builder.load_file("GUI.kv")
 
@@ -102,6 +104,7 @@ class FirstApp(App):
 
 
 if __name__ == '__main__':
-    thread.start_new_thread(recv_image)
+    fire_popup = lambda x: (recPU().open())
+    _thread.start_new_thread(recv_image, (fire_popup, ))
     Simple = FirstApp()
     Simple.run()

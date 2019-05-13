@@ -39,11 +39,11 @@ def recv_image(callback=lambda: x):
             image_data = b''
             data = b''
             while data != CommunicationConstants.commands['END_TX']:
-                print(data)
+                # print(data)
                 data = client_socket.recv(1024)
                 if len(data) < 1024:
                     data = data[:-2]
-                    print(data[-2:])
+                    # print(data[-2:])
                     image_data += data
                     break
                 image_data += data
