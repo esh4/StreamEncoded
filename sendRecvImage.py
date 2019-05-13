@@ -1,12 +1,12 @@
 from Constants import CommunicationConstants
 import socket
+from datetime import datetime
 
-
-def send_image(image_dir):
+def send_image(image_dir, ip='localhost'):
     try:
         # Connect to server
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        s.connect(('localhost', 5990))
+        s.connect((ip, 5990))
 
         # send AWAIT_IMAGE command
         s.send(CommunicationConstants.commands['INCOMING_IMAGE'])
@@ -23,7 +23,7 @@ def send_image(image_dir):
         s.close()
 
 
-def recv_image(callback=lambda: x):
+def recv_image(accept_image=lambda: False):
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_socket.bind(('0.0.0.0', 5990))
     server_socket.listen(1)
@@ -34,7 +34,7 @@ def recv_image(callback=lambda: x):
         command = client_socket.recv(1024)
         print(command == CommunicationConstants.commands['INCOMING_IMAGE'])
 
-        if command == CommunicationConstants.commands['INCOMING_IMAGE']:
+        if command == CommunicationConstants.commands['INCOMING_IMAGE'] and accept_image():
             print('recving img')
             image_data = b''
             data = b''
@@ -48,9 +48,8 @@ def recv_image(callback=lambda: x):
                     break
                 image_data += data
 
-            with open('recv.png', 'wb') as f:
+            with open('recv {}.png'.format(datetime.now()), 'wb') as f:
                 f.write(image_data)
-            callback()
     finally:
         server_socket.close()
         client_socket.close()

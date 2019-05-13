@@ -8,7 +8,7 @@ Management:
 
 
 <But@Button>:
-    font_size: 50
+    font_size: "30sp"
     background_normal: "gui_deps/rectangle-transparent-blank-3.png"
     background_down: "gui_deps/rectangle-transparent-blank-3.png"
 
@@ -32,7 +32,7 @@ Management:
         Label:
             size_hint_y: 0.3
             text: "Picture Encoding Program"
-            font_size: "80sp"
+            font_size: "50sp"
             color: 0,1,.5,1
             background_color: 0,0,0,0
             bold: True
@@ -215,4 +215,31 @@ Management:
 
 <recPU>:
     Button:
-        text: "HELLO"
+        text: "here"
+    ScreenManager:
+        id: man
+        transition: FadeTransition()
+        Screen:
+            GridLayout:
+                rows: 2
+                Button:
+                    text: "Aceept"
+                    on_press: root.acceptIMG(True)
+                    on_release:  app.root.current = "a"
+                Button:
+                    text: "Decline"
+                    on_press: root.acceptIMG(False)
+
+        Screen:
+            name: "a"
+            GridLayout:
+                rows: 2
+                Image:
+                    size_hint_y: 0.7
+                    source: None
+                GridLayout:
+                    cols: 2
+                    Button:
+                        text: "Download"
+                    Button:
+                        text: "Dismiss"

@@ -9,7 +9,7 @@ from kivy.config import Config
 
 # Config.set('graphics', 'width', '1000')
 # Config.set('graphics', 'height', '750')
-
+Config.set('graphics', 'resizable', False)
 
 from StartStopBitCodec import *
 from sendRecvImage import  *
@@ -17,6 +17,7 @@ from sendRecvImage import  *
 from PIL import Image
 import kivy
 import _thread
+import time
 kivy.require('1.9.1')
 
 
@@ -93,7 +94,23 @@ class decPU(Popup):
     pass
 
 class recPU(Popup):
-    pass
+    receive = None
+    pu = None
+
+    def acceptIMG(self, accept):
+        self.receive = accept
+
+    @staticmethod
+    def show_popup():
+        pu = recPU()
+        print('!!!!!!!!!')
+        pu.open()
+        print('@@@@@@@@')
+        while pu.receive is None:
+            print(pu.receive)
+            time.sleep(0.5)
+        return pu.receive
+
 
 presentation = Builder.load_file("GUI.kv")
 
@@ -104,7 +121,6 @@ class FirstApp(App):
 
 
 if __name__ == '__main__':
-    fire_popup = lambda x: (recPU().open())
-    _thread.start_new_thread(recv_image, (fire_popup, ))
+    _thread.start_new_thread(recv_image, (recPU.show_popup, ))
     Simple = FirstApp()
     Simple.run()
