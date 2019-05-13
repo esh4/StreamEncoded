@@ -59,6 +59,7 @@ Management:
             AnchorLayout:
                 But:
                     on_release: app.root.current = "Enc"
+                    on_press: root.popup()
                     text: "Encode"
                     size_hint_y: 0.4
                     size_hint_x: 0.3
@@ -186,18 +187,27 @@ Management:
 <recPU>:
     title: "Received Encoded Photo"
     title_align: "center"
-    title_size: "60sp"
-
+    title_size: "30sp"
     GridLayout:
-        cols: 2
-        size_hint_y: 0.3
-        Button:
-            text: "Decline & Delete"
-            on_press: root.acceptIMG(False), root.dismiss()
-
-        Button:
-            text: "Aceept & Download"
-            on_press: root.acceptIMG(True), root.dismiss()
+        rows: 2
+        Label:
+            text: "Would you like to accept \n the received encoded image?"
+            font_size: "40sp"
+        GridLayout:
+            cols: 2
+            size_hint_y: 0.2
+            AnchorLayout:
+                But:
+                    size_hint_x: 0.9
+                    color: 1,1,1,1
+                    text: "Decline & Delete"
+                    on_press: root.acceptIMG(False), root.dismiss()
+            AnchorLayout:
+                But:
+                    size_hint_x: 0.9
+                    color: 1,1,1,1
+                    text: "Aceept & Download"
+                    on_press: root.acceptIMG(True), root.dismiss()
 
 
 

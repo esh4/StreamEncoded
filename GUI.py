@@ -26,7 +26,9 @@ class Management(ScreenManager):
 
 
 class HomeScreen(Screen,GridLayout):
-    pass
+    def popup(self):
+        a = recPU()
+        a.open()
 
 
 class Encode(Screen, GridLayout):
