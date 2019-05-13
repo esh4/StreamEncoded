@@ -14,7 +14,7 @@ Config.set('graphics', 'resizable', False)
 from StartStopBitCodec import *
 from sendRecvImage import  *
 
-from PIL import Image
+#from PIL import Image
 import kivy
 import _thread
 import time
@@ -70,6 +70,7 @@ class Encode(Screen, GridLayout):
         encoded_image = encode_image(image, message, starting_location, message_width)
         encoded_image.save(image_directory[:-4]+'__encoded.png')
 
+
 class Decode(Screen, GridLayout):
     decoded_msg = ''
 
@@ -85,6 +86,10 @@ class Decode(Screen, GridLayout):
         PU = decPU()
         PU.open()
         PU.ids.decodedLabel.text = self.decoded_msg.strip()
+
+    def update(self):
+        self.ids.img2.source = self.ids.dir2.text
+
 
 class encPU(Popup):
     pass
