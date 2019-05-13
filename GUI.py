@@ -30,11 +30,11 @@ class HomeScreen(Screen,GridLayout):
 
 
 class Encode(Screen, GridLayout):
-
     def update(self):
         self.ids.img.source = self.ids.dir.text
 
     def switch(self, current, next):
+
         self.screens = ["width", "directory", "message", "location"]
         self.index = self.screens.index(current)
         if(self.index == 3):
@@ -50,9 +50,6 @@ class Encode(Screen, GridLayout):
         self.update()
         return self.screens[self.index]
 
-    def firePopup(self):
-        pop = encPU()
-        pop.open()
 
     def encodePhoto(self):
         # defaults
@@ -68,7 +65,13 @@ class Encode(Screen, GridLayout):
         message_width = int(self.ids.wid.text)
         print(image_directory, message, starting_location, message_width)
         encoded_image = encode_image(image, message, starting_location, message_width)
-        encoded_image.save(image_directory[:-4]+'__encoded.png')
+
+        encoded_image_dir = image_directory[:-4]+'__encoded.png'
+
+        encoded_image.save(encoded_image_dir)
+
+        send_image(encoded_image_dir, self.ids.ip.text)
+
 
 
 class Decode(Screen, GridLayout):
@@ -89,10 +92,6 @@ class Decode(Screen, GridLayout):
 
     def update(self):
         self.ids.img2.source = self.ids.dir2.text
-
-
-class encPU(Popup):
-    pass
 
 
 class decPU(Popup):
