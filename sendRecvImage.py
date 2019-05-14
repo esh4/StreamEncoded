@@ -19,6 +19,9 @@ def send_image(image_dir, ip='localhost'):
 
         s.send(CommunicationConstants.commands['END_TX'])
         print('sent!')
+        return 'Image send to {}'.format(ip)
+    except Exception as e:
+        return e
     finally:
         s.close()
 

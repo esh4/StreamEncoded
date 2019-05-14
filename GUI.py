@@ -57,7 +57,11 @@ class Encode(Screen, GridLayout):
 
         encoded_image.save(encoded_image_dir)
 
-        send_image(encoded_image_dir, self.ids.ip.text)
+
+
+        popup = encPU()
+        popup.ids.answer.text = send_image(encoded_image_dir, self.ids.ip.text)
+        popup.open()
 
 
 # decode screen object
@@ -115,6 +119,10 @@ class recPU(Popup):
         recPU.pu.image_dir = dir
         print(recPU.pu.image_dir)
         recPU.pu.update()
+
+class encPU(Popup):
+    pass
+
 
 # translates the .kv file and links it to the .py file
 presentation = Builder.load_file("GUI.kv")
