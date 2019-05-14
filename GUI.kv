@@ -145,7 +145,7 @@ Management:
                     size_hint_x: .7
                     color: 1,1,1,1
                     text: "Encode & Send"
-                    on_press: root.encodePhoto()
+                    on_press: root.encode_image()
 
 
 #Decode screen
@@ -198,7 +198,7 @@ Management:
                     on_press:   root.decode_image(), root.firePopup()
 
 #popup that is displayed when an image is received from another user
-<recPU>:
+<ReceivedPopup>:
     title: "Received Encoded Photo"
     title_align: "center"
     title_size: "30sp"

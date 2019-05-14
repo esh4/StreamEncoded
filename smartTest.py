@@ -1,6 +1,6 @@
 from StartStopBitCodec import encode_image, decode_image
 from PIL import Image
-from sendRecvImage import *
+from SendReceiveImage import *
 
 msg = open('testMsg.txt', 'r').read()
 filename = 'testImg.png'

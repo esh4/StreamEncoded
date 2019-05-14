@@ -2,8 +2,6 @@ from Tools import MessageOverflowError
 from math import ceil
 import re
 
-# TODO: verivy that the size can actually hold the entire message
-# todo: make sure the size + location actually fit in the image
 
 def scale(num, scalefrom, scaleto):
     """

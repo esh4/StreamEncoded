@@ -13,7 +13,7 @@ import re
 Config.set('graphics', 'resizable', False)
 
 from StartStopBitCodec import *
-from sendRecvImage import  *
+from SendReceiveImage import  *
 
 from PIL import Image
 import kivy
@@ -37,7 +37,7 @@ class Encode(Screen, GridLayout):
         self.ids.img.source = self.ids.dir.text
 
     # function that encodes the photo, based off of user inputted data in the GUI
-    def encodePhoto(self):
+    def encode_image(self):
         #  defaults
         #  self.ids.dir.text = r'testImg.png'
         #  self.ids.mes.text = open('testMsg.txt', 'r').read()
@@ -90,7 +90,7 @@ class decPU(Popup):
     pass
 
 # received image popup object
-class recPU(Popup):
+class ReceivedPopup(Popup):
     receive = None
     pu = None
     image_dir = ''
@@ -98,27 +98,27 @@ class recPU(Popup):
     @staticmethod
     def update():
         pass
-    #      recPU.pu.ids.received_image.source = '280px-PNG_transparency_demonstration_1.png'
-    #      print(recPU.pu.ids.received_image.source)
+    #      ReceivedPopup.pu.ids.received_image.source = '280px-PNG_transparency_demonstration_1.png'
+    #      print(ReceivedPopup.pu.ids.received_image.source)
 
     @staticmethod
     def acceptIMG(accept):
-        recPU.pu.receive = accept
+        ReceivedPopup.pu.receive = accept
 
     @staticmethod
     def show_popup():
-        recPU.pu = recPU()
-        recPU.pu.open()
-        while recPU.pu.receive is None:
-            print(recPU.pu.receive)
+        ReceivedPopup.pu = ReceivedPopup()
+        ReceivedPopup.pu.open()
+        while ReceivedPopup.pu.receive is None:
+            print(ReceivedPopup.pu.receive)
             time.sleep(0.5)
-        return recPU.pu.receive
+        return ReceivedPopup.pu.receive
 
     @staticmethod
     def display_image(dir):
-        recPU.pu.image_dir = dir
-        print(recPU.pu.image_dir)
-        recPU.pu.update()
+        ReceivedPopup.pu.image_dir = dir
+        print(ReceivedPopup.pu.image_dir)
+        ReceivedPopup.pu.update()
 
 class encPU(Popup):
     pass
@@ -129,12 +129,11 @@ presentation = Builder.load_file("GUI.kv")
 
 
 # runs the GUI as an application
-class FirstApp(App):
+class Pencode(App):
     def build(self):
         return presentation
 
 
-if __name__ == '__main__':
-    _thread.start_new_thread(recv_image, (recPU.show_popup, recPU.display_image))
-    Simple = FirstApp()
-    Simple.run()
+    def wait_for_image(self):
+        _thread.start_new_thread(recv_image, (ReceivedPopup.show_popup, ReceivedPopup.display_image))
+
