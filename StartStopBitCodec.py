@@ -23,20 +23,20 @@ def verify_message_len(func):
         :param message_width:
         :return:
         """
-        wh = img.size
+        width, height = img.size
         if start_location[0]*100 != 0 or start_location[1] % 100 != 0:
             # raise ValueError('please insert a whole number')
             print('WARNING', 'your starting location might be shit')
 
-        if start_location[0] + message_width > wh[0]:
+        if start_location[0] + message_width > width:
             print('WARNING: ', 'Your message width will be trimmed at the edge of the image. \n'
                                'updating message length to fit image.')
-            message_width = wh[0] - start_location[0]
+            message_width = width - start_location[0]
             print('message width now {0}'.format(message_width))
 
         message_height = ceil(len(msg)/message_width)      # how many rows the massage will take up
 
-        if start_location[1] + message_height > wh[1]:
+        if start_location[1] + message_height > height:
             raise MessageOverflowError('message takes up {} rows!'.format(message_height))
 
         return func(img, msg, start_location, message_width=message_width)
@@ -71,23 +71,23 @@ def encode_image(img, msg, start_location=(50, 700), **kwargs):
 
     # TODO: scale the message width as well
 
-    encoded.putpixel((0, 0), (message_width, start_location[0], start_location[1]))     # add the message's location to the top of the image
+    # add the message's location to the first pixel
+    encoded.putpixel((0, 0), (message_width, start_location[0], start_location[1]))
 
+    # we want to iterate only over the pixels that follow the starting location. therefore we add an offset to the
+    # rows and columns.
     for row in range(row_offset, height):
         for col in range(col_offset, min(col_offset + message_width, width)):
             r, g, b = img.getpixel((col, row))
             if msg_index < len(msg):
                 asc = ord(msg[msg_index])
-            elif msg_index == len(msg):     # end of the massage
-                asc = r
-            elif msg_index == len(msg) + 1:
+            elif msg_index == len(msg):
                 asc = ord('#')    # stop bit
                 print('stop bit added')
             else:
                 asc = r
             msg_index += 1
             encoded.putpixel((col, row), (asc, g, b))
-            # print(col, row)
     return encoded
 
 

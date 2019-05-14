@@ -19,5 +19,7 @@ def open_file(filename):
         subprocess.call([opener, filename])
 
 
+
 class MessageOverflowError(Exception):
     pass
+

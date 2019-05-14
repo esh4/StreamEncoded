@@ -21,7 +21,7 @@ def send_image(image_dir, ip='localhost'):
         print('sent!')
         return 'Image send to {}'.format(ip)
     except Exception as e:
-        return e
+        return str(e)
     finally:
         s.close()
 
