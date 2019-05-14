@@ -6,19 +6,20 @@ Management:
     Encode:
     Decode:
 
-
+#defining a custom button with popular parameters
 <But@Button>:
     color: 1,0,0,1
     font_size: "35sp"
     background_normal: "gui_deps/rectangle-transparent-blank-3.png"
     background_down: "gui_deps/rectangle-transparent-blank-3.png"
 
-
+#custom button 2
 <But2@Button>:
     font_size: "30sp"
     background_normal: "gui_deps/button-transparent-background-17.png"
     background_down: "gui_deps/button-transparent-background-17.png"
 
+#custom label
 <LB@Label>:
     font_size: '40sp'
     center_x: 0
@@ -28,17 +29,19 @@ Management:
     color: 1,1,1,1
     bold: True
 
+#custom text input
 <TI@TextInput>:
     multiline: False
     font_size: "40sp"
     padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
     write_tab: False
 
-
+#initial screen when opening the program, serving as the home screen
 <HomeScreen>:
     name: "home"
     spacing: 10
     padding: 10
+    #background image
     Image:
         source: "gui_deps/blue-square-walls-24979-2880x1800.jpg"
         allow_stretch: True
@@ -46,6 +49,7 @@ Management:
     GridLayout:
         orientation: "horizontal"
         rows: 2
+        #Program title label
         Label:
             size_hint_y: 0.3
             text: "Picture Encoding Program"
@@ -57,22 +61,25 @@ Management:
         GridLayout:
             rows: 2
             AnchorLayout:
+                #button to move to the Encoding part of the program - switches to encode screen
                 But:
                     on_release: app.root.current = "Enc"
                     text: "Encode"
                     size_hint_y: 0.4
                     size_hint_x: 0.3
             AnchorLayout:
+                #button to move to the Decoding part of the program - switches to decode screen
                 But:
                     on_release: app.root.current = "Dec"
                     text: "Decode"
                     size_hint_y: 0.4
                     size_hint_x: 0.3
-
+#Encode screen
 <Encode>:
     name: "Enc"
     spacing: 10
     padding: 10
+    #background image
     Image:
         source: "gui_deps/blue-square-walls-24979-2880x1800.jpg"
         allow_stretch: True
@@ -80,14 +87,14 @@ Management:
     GridLayout:
         orientation: "horizontal"
         rows: 3
-
+        #live image that updates when a directory is inputted
         Image:
             source: None
             id: img
 
             keep_ratio: True
             allow_stretch: True
-
+        #defining 5 labels and their according text inputs(user inputted), as parameters for encoding an image
         GridLayout:
             cols: 2
             GridLayout:
@@ -127,11 +134,13 @@ Management:
             size_hint_y: .3
             cols: 2
             AnchorLayout:
+                #back button
                 But2:
                     size_hint_x: .4
                     text: "Back"
                     on_press: app.root.current = "home"
             AnchorLayout:
+                #button that encodes the image with the inputted parameters
                 But:
                     size_hint_x: .7
                     color: 1,1,1,1
@@ -139,17 +148,19 @@ Management:
                     on_press: root.encodePhoto()
 
 
-
+#Decode screen
 <Decode>:
     name: "Dec"
     spacing: 10
     padding: 10
+    #background image
     Image:
         source: "gui_deps/blue-square-walls-24979-2880x1800.jpg"
         keep_ratio: False
         allow_stretch: True
     GridLayout:
         rows: 3
+        #live image that updates when a directory is inputted
         Image:
             source: None
             id: img2
@@ -162,6 +173,7 @@ Management:
             spacing: 10
             size_hint_y: 0.15
             cols: 2
+            #label and text input for user to input the directory of the photo to decode
             LB:
                 text: "Directory"
                 size_hint_x: .3
@@ -171,23 +183,28 @@ Management:
         GridLayout:
             size_hint_y: .2
             cols: 2
+
             AnchorLayout:
+                #back button
                 But2:
                     size_hint_x: .4
                     text: "Back"
                     on_press: app.root.current = "home"
             AnchorLayout:
+                #button that decodes the inputted image, and opens a popup that displays the decoded message
                 But2:
                     size_hint_x: .4
                     text: "Decode"
                     on_press:   root.decode_image(), root.firePopup()
 
+#popup that is displayed when an image is received from another user
 <recPU>:
     title: "Received Encoded Photo"
     title_align: "center"
     title_size: "30sp"
     GridLayout:
         rows: 2
+        #label that asks whether the user would like to download the image
         Label:
             text: "Would you like to accept \n the received encoded image?"
             font_size: "40sp"
@@ -195,12 +212,14 @@ Management:
             cols: 2
             size_hint_y: 0.2
             AnchorLayout:
+                #button that declines receiving the image and deletes it, and closes the popup
                 But:
                     size_hint_x: 0.9
                     color: 1,1,1,1
                     text: "Decline & Delete"
                     on_press: root.acceptIMG(False), root.dismiss()
             AnchorLayout:
+                #button that downloads the received image to the /Downloads folder
                 But:
                     size_hint_x: 0.9
                     color: 1,1,1,1
@@ -208,19 +227,21 @@ Management:
                     on_press: root.acceptIMG(True), root.dismiss()
 
 
-
+#popup that displays the decoded message
 <decPU>:
     title: "Decoded Message"
     title_align: "center"
     title_size: "30sp"
     GridLayout:
         rows: 2
+        #label that contains the decoded message. Default is an empty string
         Label:
             id: decodedLabel
             text: ""
             font_size: "30sp"
         AnchorLayout:
             size_hint_y: .2
+            #button that closes the popup
             But2:
                 text: "Back"
                 on_press: root.dismiss()
