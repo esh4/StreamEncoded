@@ -1,10 +1,5 @@
 import sys, os, subprocess
 
-
-def verify_image_format(encoder_decoder_func):
-    # make this a cool decorator for the functions
-    pass
-
 def open_file(filename):
     """
     Open a file with the os's default application on any platform.
@@ -18,6 +13,13 @@ def open_file(filename):
         opener = "open" if sys.platform == "darwin" else "xdg-open"
         subprocess.call([opener, filename])
 
+
+def monitor_network_activity(packet):
+    """
+    this function get's passed to the prn param in scapy.sniff
+    :return: what to print
+    """
+    return packet.summary()
 
 
 class MessageOverflowError(Exception):
