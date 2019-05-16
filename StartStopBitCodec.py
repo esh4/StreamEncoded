@@ -59,7 +59,6 @@ def encode_image(img, msg, start_location=(50, 700), **kwargs):
     print('image size: {} x {}'.format(width, height))
 
     col_offset, row_offset = start_location
-    msg_index = 0
 
     if 'message_width' in kwargs:
         message_width = kwargs['message_width']
@@ -74,6 +73,7 @@ def encode_image(img, msg, start_location=(50, 700), **kwargs):
     # add the message's location to the first pixel
     encoded.putpixel((0, 0), (message_width, start_location[0], start_location[1]))
 
+    msg_index = 0
     # we want to iterate only over the pixels that follow the starting location. therefore we add an offset to the
     # rows and columns.
     for row in range(row_offset, height):

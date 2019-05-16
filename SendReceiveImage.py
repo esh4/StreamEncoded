@@ -2,6 +2,7 @@ from Constants import CommunicationConstants
 import socket
 from datetime import datetime
 
+
 def send_image(image_dir, ip='localhost'):
     try:
         # Connect to server
@@ -13,11 +14,10 @@ def send_image(image_dir, ip='localhost'):
 
         # send image
         data = open(r'' + image_dir, 'rb').read()
-
         for i in range(0, len(data), 1024):
             s.send(data[i:i + 1024])
-
         s.send(CommunicationConstants.commands['END_TX'])
+
         print('sent!')
         return 'Image send to {}'.format(ip)
     except Exception as e:
@@ -27,6 +27,7 @@ def send_image(image_dir, ip='localhost'):
 
 
 def recv_image(accept_image=lambda: False, directory_callback=lambda: False, directory='Downloads'):
+    # configure server
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_socket.bind(('0.0.0.0', 5990))
     server_socket.listen(1)
@@ -36,18 +37,16 @@ def recv_image(accept_image=lambda: False, directory_callback=lambda: False, dir
             print('connected to {}'.format(client_address))
 
             command = client_socket.recv(1024)
-            print(command == CommunicationConstants.commands['INCOMING_IMAGE'])
 
             if command == CommunicationConstants.commands['INCOMING_IMAGE'] and accept_image():
-                print('recving img')
+                print('receiving img')
                 image_data = b''
                 data = b''
                 while data != CommunicationConstants.commands['END_TX']:
-                    # print(data)
                     data = client_socket.recv(1024)
+                    # last chunk will be smaller than 1kB
                     if len(data) < 1024:
                         data = data[:-2]
-                        # print(data[-2:])
                         image_data += data
                         break
                     image_data += data
