@@ -6,7 +6,7 @@ Management:
     Encode:
     Decode:
 
-#defining a custom button with popular parameters
+#defining a custom button with common parameters
 <But@Button>:
     color: 1,0,0,1
     font_size: "35sp"
@@ -235,10 +235,13 @@ Management:
     GridLayout:
         rows: 2
         #label that contains the decoded message. Default is an empty string
-        Label:
-            id: decodedLabel
-            text: ""
-            font_size: "30sp"
+        ScrollView:
+            Label:
+                id: decodedLabel
+                text: ""
+                font_size: "30sp"
+                height: self.texture_size[1]
+                text_size: self.width, None
         AnchorLayout:
             size_hint_y: .2
             #button that closes the popup
