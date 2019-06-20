@@ -2,6 +2,9 @@ from GUI import Pencode
 from Tools import monitor_network_activity
 import _thread
 from scapy.all import sniff
+import logging
+
+logging.basicConfig(level=logging.INFO)
 
 
 if __name__ == '__main__':

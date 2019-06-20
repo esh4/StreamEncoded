@@ -1,6 +1,7 @@
 from Constants import CommunicationConstants
 import socket
 from datetime import datetime
+import logging
 
 
 def send_image(image_dir, ip='localhost'):
@@ -18,7 +19,7 @@ def send_image(image_dir, ip='localhost'):
             s.send(data[i:i + 1024])
         s.send(CommunicationConstants.commands['END_TX'])
 
-        print('sent!')
+        logging.info('[ send_image] Image sent!')
         return 'Image send to {}'.format(ip)
     except Exception as e:
         return str(e)
@@ -51,7 +52,7 @@ def recv_image(accept_image=lambda: False, directory_callback=lambda: False, dir
                         break
                     image_data += data
 
-                image_dir = '{}/recv {}.png'.format(directory, datetime.now())
+                image_dir = '{}/recv{}.png'.format(directory, datetime.now())
                 with open(image_dir, 'wb') as f:
                     f.write(image_data)
                 directory_callback(image_dir)

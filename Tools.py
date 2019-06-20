@@ -1,8 +1,10 @@
 import sys, os, subprocess
+import scapy.all as sp
+
 
 def open_file(filename):
     """
-    Open a file with the os's default application on any platform.
+    Open and run a file with the os's default application on any platform.
     os.startfile is only supported on Windows...
     :param filename: String; file to open
     :return:
@@ -19,6 +21,7 @@ def monitor_network_activity(packet):
     this function get's passed to the prn param in scapy.sniff
     :return: what to print
     """
+
     return packet.summary()
 
 
